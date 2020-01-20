@@ -73,7 +73,7 @@
 %
 %% Function Code 
 
-function [dSetK,deSupp]=classifyCommR(dFile,thr,best)
+function [dSetK,deSupp,allSupp]=classifyCommR(dFile,thr,best)
 [r,c]=size(dFile);
 supThr=zeros(1,c);
 for i=1:c
@@ -96,7 +96,12 @@ for i=1:r
         for k=1:c
             supC=size(allSupp{i,k});
             for l=1:supC
-                sepFrq(allSupp{i,j}(l))=sepFrq(allSupp{i,j}(l))+1;
+                try
+                    sepFrq(allSupp{i,j}(l))=sepFrq(allSupp{i,j}(l))+1;
+                catch MExcep
+                    continue
+                end
+                
             end
         end
         for k=1:r

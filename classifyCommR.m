@@ -95,7 +95,7 @@ for i=1:r
         sepFrq=zeros(1,r);
         for k=1:c
             supC=size(allSupp{i,k});
-            for l=1:supC
+            for l=1:max(supC)
                 try
                     sepFrq(allSupp{i,j}(l))=sepFrq(allSupp{i,j}(l))+1;
                 catch MExcep

@@ -70,6 +70,14 @@
 % array is ordered in descending manner.
 % tmpCtr : (Temporary Counter) temporary counter to count and used as a
 % loop increment variable for storing up the dSetK.
+% MEx : error raised when improper cell structure is created resulting
+% in bad subscripts notation. Main task of this section is to discard
+% improper data orientation if created in the cell structure due to
+% inadecuacy in the format of the data available. *NB: EXCEPTION AS THIS IS
+% THUS IGNORED FOR THE TIME BEING SINCE THE SCENARIO OF THIS CODE'S FUTURE
+% USAGE IS NOT CERTAIN AT THE TIME OF CODING.* user of this code is allowed
+% permission to convert or edit the Catch phrase of the code at #109 and
+% tailor as per the requirement of the problem involved. 
 %
 %% Function Code 
 
@@ -95,13 +103,12 @@ for i=1:r
         sepFrq=zeros(1,r);
         for k=1:c
             supC=size(allSupp{i,k});
-            for l=1:max(supC)
+            for l=0:supC(2)
                 try
                     sepFrq(allSupp{i,j}(l))=sepFrq(allSupp{i,j}(l))+1;
-                catch MExcep
+                catch MEx
                     continue
                 end
-                
             end
         end
         for k=1:r
